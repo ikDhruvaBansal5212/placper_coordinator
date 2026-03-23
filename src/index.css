@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #0e0f11;
+  --surface: #16181c;
+  --surface2: #1e2026;
+  --border: #2a2d35;
+  --border2: #363a44;
+  --text: #e8eaf0;
+  --muted: #7a7f8e;
+  --accent: #c8f060;
+  --accent-dim: rgba(200, 240, 96, 0.12);
+  --red: #ff6b6b;
+  --red-dim: rgba(255, 107, 107, 0.12);
+  --amber: #ffb84d;
+  --amber-dim: rgba(255, 184, 77, 0.12);
+  --blue: #64b5f6;
+  --blue-dim: rgba(100, 181, 246, 0.12);
+  --green: #81e6a0;
+  --green-dim: rgba(129, 230, 160, 0.12);
+  --purple: #b794f4;
+  --purple-dim: rgba(183, 148, 244, 0.12);
+  --radius: 10px;
+  --radius-lg: 14px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Syne', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--border);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--muted);
+  border-radius: 3px;
+}
