@@ -1,8 +1,21 @@
 {
+  "name": "placement-hub-personal-coordinator",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
   "dependencies": {
+    "@vitejs/plugin-react": "^6.0.1",
     "date-fns": "^4.1.0",
     "lucide-react": "^0.577.0",
-    "react-router-dom": "^7.13.1"
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "react-router-dom": "^7.13.1",
+    "vite": "^8.0.1"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.27",
