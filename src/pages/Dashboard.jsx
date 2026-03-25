@@ -8,7 +8,7 @@ import Button from '../components/ui/Button';
 import { formatDate, dateUrgencyColor } from '../utils/dateUtils';
 import { SOURCE_LABELS } from '../utils/constants';
 
-export default function Dashboard() {
+export default function Dashboard({ windowWidth }) {
   const { apps } = useApp();
   const navigate = useNavigate();
 
@@ -20,6 +20,8 @@ export default function Dashboard() {
     .slice(0, 4);
 
   const recentApps = [...apps].reverse().slice(0, 3);
+
+  const isSmallScreen = windowWidth < 900;
 
   return (
     <div>
@@ -58,7 +60,7 @@ export default function Dashboard() {
       <div
         style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(4, 1fr)',
+          gridTemplateColumns: isSmallScreen ? 'repeat(2, 1fr)' : 'repeat(4, 1fr)',
           gap: 12,
           marginBottom: 28,
         }}
@@ -89,7 +91,7 @@ export default function Dashboard() {
       <div
         style={{
           display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
+          gridTemplateColumns: isSmallScreen ? '1fr' : '1fr 1fr',
           gap: 20,
         }}
       >

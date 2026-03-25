@@ -10,7 +10,7 @@ const NAV_LINKS = [
   { to: '/planner', label: 'Daily Planner', icon: PenLine },
 ];
 
-export default function Sidebar() {
+export default function Sidebar({ isCollapsed = false }) {
   const [hoveredLink, setHoveredLink] = useState(null);
 
   return (
@@ -19,15 +19,16 @@ export default function Sidebar() {
         position: 'fixed',
         left: 0,
         top: 0,
-        width: 220,
+        width: isCollapsed ? 56 : 220,
         height: '100vh',
         background: 'var(--surface)',
         borderRight: '1px solid var(--border)',
-        padding: '24px 16px',
+        padding: isCollapsed ? '24px 8px' : '24px 16px',
         display: 'flex',
         flexDirection: 'column',
         gap: 2,
         zIndex: 10,
+        transition: 'width 0.3s, padding 0.3s',
       }}
     >
       {/* LOGO AREA */}
@@ -35,6 +36,7 @@ export default function Sidebar() {
         style={{
           display: 'flex',
           alignItems: 'center',
+          justifyContent: isCollapsed ? 'center' : 'flex-start',
           gap: 8,
           paddingBottom: 20,
           borderBottom: '1px solid var(--border)',
@@ -49,16 +51,18 @@ export default function Sidebar() {
             borderRadius: '50%',
           }}
         />
-        <div
-          style={{
-            fontSize: 16,
-            fontWeight: 700,
-            color: 'var(--accent)',
-            letterSpacing: -0.3,
-          }}
-        >
-          Placement Hub
-        </div>
+        {!isCollapsed && (
+          <div
+            style={{
+              fontSize: 16,
+              fontWeight: 700,
+              color: 'var(--accent)',
+              letterSpacing: -0.3,
+            }}
+          >
+            Placement Hub
+          </div>
+        )}
       </div>
 
       {/* NAV LINKS */}
@@ -71,8 +75,9 @@ export default function Sidebar() {
             style={({ isActive }) => ({
               display: 'flex',
               alignItems: 'center',
+              justifyContent: isCollapsed ? 'center' : 'flex-start',
               gap: 10,
-              padding: '9px 10px',
+              padding: isCollapsed ? '9px' : '9px 10px',
               borderRadius: 'var(--radius)',
               fontSize: 13,
               fontWeight: 500,
@@ -95,27 +100,29 @@ export default function Sidebar() {
             {({ isActive }) => (
               <>
                 <Icon size={16} style={{ opacity: isActive ? 1 : 0.7 }} />
-                {link.label}
+                {!isCollapsed && link.label}
               </>
             )}
           </NavLink>
         );
       })}
 
-      {/* BOTTOM FOOTER */}
-      <div
-        style={{
-          marginTop: 'auto',
-          background: 'var(--surface2)',
-          borderRadius: 'var(--radius)',
-          padding: '12px 10px',
-        }}
-      >
-        <div style={{ fontSize: 13, fontWeight: 600 }}>My Profile</div>
-        <div style={{ fontSize: 11, color: 'var(--muted)', marginTop: 2 }}>
-          3rd Year · Engineering
+      {/* BOTTOM FOOTER - only show when not collapsed */}
+      {!isCollapsed && (
+        <div
+          style={{
+            marginTop: 'auto',
+            background: 'var(--surface2)',
+            borderRadius: 'var(--radius)',
+            padding: '12px 10px',
+          }}
+        >
+          <div style={{ fontSize: 13, fontWeight: 600 }}>My Profile</div>
+          <div style={{ fontSize: 11, color: 'var(--muted)', marginTop: 2 }}>
+            3rd Year · Engineering
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }

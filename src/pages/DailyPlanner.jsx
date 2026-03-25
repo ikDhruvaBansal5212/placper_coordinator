@@ -110,7 +110,7 @@ function TaskFormModal({ isOpen, onClose, targetDay }) {
   );
 }
 
-export default function DailyPlanner() {
+export default function DailyPlanner({ windowWidth }) {
   const {
     tasks,
     habitCompletions,
@@ -143,6 +143,8 @@ export default function DailyPlanner() {
   const doneCount = allToday.filter((t) => t.done).length;
   const totalCount = allToday.length;
 
+  const isSmallScreen = windowWidth < 900;
+
   const openModal = (targetDay) => {
     setModalTargetDay(targetDay);
     setIsModalOpen(true);
@@ -164,7 +166,7 @@ export default function DailyPlanner() {
       <div
         style={{
           display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
+          gridTemplateColumns: isSmallScreen ? '1fr' : '1fr 1fr',
           gap: 20,
           alignItems: 'start',
         }}
